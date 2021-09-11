@@ -1,0 +1,8 @@
+<script>
+  function calcCyclus(p) {
+    return 15*Math.sin((2*Math.PI*(new Date()).toUTCString().substring(17,19))/p)
+  }
+  document.write("Diamond: " + calcCyclus(3))
+  document.write("<br>Ruby: " + calcCyclus(12))
+  document.write("<br>Jade: " + calcCyclus(24))
+</script>
