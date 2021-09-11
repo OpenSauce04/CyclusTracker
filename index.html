@@ -1,8 +1,27 @@
 <script>
-  function calcCyclus(p) {
-    return 15*Math.sin((2*Math.PI*(new Date()).toUTCString().substring(17,19))/p)
+  function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
-  document.write("Diamond: " + calcCyclus(3))
-  document.write("<br>Ruby: " + calcCyclus(12))
-  document.write("<br>Jade: " + calcCyclus(24))
+
+
+  function calcCyclus(p) {
+    currentDate = new Date()
+    return 15*Math.sin((2*(Math.PI*(
+      currentDate.toUTCString().substring(17,19) + (( // Hour
+      currentDate.toUTCString().substring(20,22)/60) + ( // Minute
+      currentDate.toUTCString().substring(23,25)/3600))))) // Second
+      /p) // Pantheon Rank
+  }
+
+  async function startLoop() {
+    while(true) {
+      document.open()
+      document.write("Diamond: " + calcCyclus(3))
+      document.write("<br>Ruby: " + calcCyclus(12))
+      document.write("<br>Jade: " + calcCyclus(24))
+      await sleep(1000)
+      document.clear()
+    }
+  }
+  startLoop()
 </script>
